@@ -21,4 +21,16 @@ interface TaskDao {
 
     @Query("DELETE FROM Tasks WHERE id = (:id)")
     fun deleteTask(id: UUID)
+
+    @Query("DELETE FROM Tasks")
+    fun deleteAllTasks()
+
+    @Query("SELECT * FROM TASKS ORDER BY priority")
+    fun getPriority(): LiveData<List<Tasks>>
+
+    @Query("SELECT * FROM TASKS WHERE tag = (:tag)")
+    fun getTag(tag: String): LiveData<List<Tasks>>
+
+    @Query("SELECT * FROM TASKS WHERE isDone = 0")
+    fun getUndone() : LiveData<List<Tasks>>
 }

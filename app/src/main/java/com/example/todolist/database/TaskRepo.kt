@@ -25,6 +25,15 @@ class TaskRepo private constructor(context: Context) : TaskDao {
 
     override fun getAllTasks(): LiveData<List<Tasks>> = taskDao.getAllTasks()
 
+    override fun getPriority(): LiveData<List<Tasks>> = taskDao.getPriority()
+
+    override fun getTag(tag: String): LiveData<List<Tasks>> {
+        return taskDao.getTag(tag)
+    }
+
+    override fun getUndone(): LiveData<List<Tasks>> = taskDao.getUndone()
+
+
     override fun getTask(id: UUID): LiveData<Tasks?> {
         return taskDao.getTask(id)
     }
@@ -44,6 +53,12 @@ class TaskRepo private constructor(context: Context) : TaskDao {
     override fun deleteTask(id: UUID) {
         executor.execute{
             taskDao.deleteTask(id)
+        }
+    }
+
+    override fun deleteAllTasks() {
+        executor.execute{
+            taskDao.deleteAllTasks()
         }
     }
 

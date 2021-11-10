@@ -1,6 +1,5 @@
 package com.example.todolist.database
 
-import android.accounts.AuthenticatorDescription
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
@@ -9,8 +8,10 @@ import java.util.*
 data class Tasks(
     @PrimaryKey val id: UUID = UUID.randomUUID(),
     var taskTitle: String = "",
-    var dueDate: Date = Date(),
+    var dueDate: Date? = null,
+    var currentDate: Date? = Date(),
     var isDone: Boolean = false,
     var description: String = "",
-    var priority: String = ""
+    var priority: Int = 0,
+    var tag: String = ""
 )

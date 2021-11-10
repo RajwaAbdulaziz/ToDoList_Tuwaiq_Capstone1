@@ -4,7 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="#698BE8">
+
+    <RadioGroup
+        android:id="@+id/priorityRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dueDateButton">
+
+        <RadioButton
+            android:id="@+id/high_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#BF6C6C"
+            android:checked="false"
+            android:text="High" />
+
+        <RadioButton
+            android:id="@+id/medium_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#88B58A"
+            android:checked="false"
+            android:text="Medium" />
+
+        <RadioButton
+            android:id="@+id/low_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#EFE483"
+            android:checked="false"
+            android:text="Low" />
+
+    </RadioGroup>
 
     <EditText
         android:id="@+id/taskTitleEditText"
@@ -41,9 +78,9 @@
         android:layout_marginStart="176dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="176dp"
-        android:background="@drawable/item_backgroud2"
+        android:background="@drawable/item_backgroud"
         android:gravity="center"
-        android:text="Button"
+        android:text="Set Date"
         android:textColor="#A691C5"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,48 +88,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/tagsRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@id/textView2"
-        app:layout_constraintTop_toBottomOf="@id/dueDateButton">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15sp"
-            android:text="Priority:"
-            android:textColor="#A691C5"
-            android:textSize="20sp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityRadioGroup">
 
         <RadioButton
-            android:id="@+id/high_button"
+            android:id="@+id/home_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#BF6C6C"
-            android:checked="false"
-            android:text="High" />
+            android:layout_marginEnd="10dp"
+            android:button="@drawable/custom_radio_button" />
 
         <RadioButton
-            android:id="@+id/medium_button"
+            android:id="@+id/shopping_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#88B58A"
-            android:checked="false"
-            android:text="Medium" />
+            android:layout_marginEnd="10dp"
+            android:button="@drawable/ic_baseline_local_grocery_store_24" />
 
         <RadioButton
-            android:id="@+id/low_button"
+            android:id="@+id/work_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#EFE483"
-            android:checked="false"
-            android:text="Low" />
+            android:button="@drawable/ic_baseline_work_24" />
 
     </RadioGroup>
 
@@ -131,5 +155,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@id/tagsRadioGroup"
+        tools:layout_editor_absoluteX="72dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

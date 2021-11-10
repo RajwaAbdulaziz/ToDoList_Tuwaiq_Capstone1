@@ -9,32 +9,35 @@ import java.util.*
 
 class DatePickerDialogFragment: DialogFragment() {
 
-    interface DatePickerCallback{
+    interface DatePickerCallback {
 
         fun onDateSelected(date: Date)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val date = arguments?.getSerializable(TASK_DUE_DATE) as Date
 
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val date = arguments?.getSerializable(TASK_DUE_DATE) as? Date
 
-        val dateListener = DatePickerDialog.OnDateSetListener { _, i, i2, i3 ->
-            val resultDate = GregorianCalendar(i, i2, i3).time
-            targetFragment.let {
-                (it as DatePickerCallback).onDateSelected(resultDate)
-            }
+            val calendar = Calendar.getInstance()
+        if (date != null) {
+            calendar.time = date
         }
-        return DatePickerDialog(
-            requireContext(),
-            dateListener,
-            year,
-            month,
-            day
-        )
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val dateListener = DatePickerDialog.OnDateSetListener { _, i, i2, i3 ->
+                val resultDate = GregorianCalendar(i, i2, i3).time
+                targetFragment.let {
+                    (it as DatePickerCallback).onDateSelected(resultDate)
+                }
+            }
+            return DatePickerDialog(
+                requireContext(),
+                dateListener,
+                year,
+                month,
+                day
+            )
     }
 }

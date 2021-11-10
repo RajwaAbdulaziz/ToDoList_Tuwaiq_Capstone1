@@ -1,6 +1,5 @@
 package com.example.todolist.taskDetailsFragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -17,7 +16,6 @@ class TaskDetailsFragmentViewModel: ViewModel() {
     var taskLiveData: LiveData<Tasks?> =
         Transformations.switchMap(taskIdLiveData){
             taskRepo.getTask(it)
-
         }
 
     fun loadTask(taskId: UUID) {
