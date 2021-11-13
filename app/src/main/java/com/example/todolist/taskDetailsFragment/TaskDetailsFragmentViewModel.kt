@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.todolist.database.TaskRepo
-import com.example.todolist.database.Tasks
+import com.example.todolist.database.Task
 import java.util.*
 
 class TaskDetailsFragmentViewModel: ViewModel() {
@@ -13,7 +13,7 @@ class TaskDetailsFragmentViewModel: ViewModel() {
     private val taskRepo = TaskRepo.get()
     private val taskIdLiveData = MutableLiveData<UUID>()
 
-    var taskLiveData: LiveData<Tasks?> =
+    var taskLiveData: LiveData<Task?> =
         Transformations.switchMap(taskIdLiveData){
             taskRepo.getTask(it)
         }
@@ -22,7 +22,7 @@ class TaskDetailsFragmentViewModel: ViewModel() {
         taskIdLiveData.value = taskId
     }
 
-    fun safeUpdates(task: Tasks) {
+    fun safeUpdates(task: Task) {
         taskRepo.updateTask(task)
     }
 

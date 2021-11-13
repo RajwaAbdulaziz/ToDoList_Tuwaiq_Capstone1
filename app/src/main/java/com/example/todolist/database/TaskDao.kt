@@ -7,30 +7,21 @@ import java.util.*
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM Tasks")
-    fun getAllTasks(): LiveData<List<Tasks>>
+    @Query("SELECT * FROM Task")
+    fun getAllTasks(): LiveData<List<Task>>
 
-    @Query("SELECT * FROM Tasks WHERE id = (:id)")
-    fun getTask(id: UUID): LiveData<Tasks?>
+    @Query("SELECT * FROM Task WHERE id = (:id)")
+    fun getTask(id: UUID): LiveData<Task?>
 
     @Update
-    fun updateTask(task: Tasks)
+    fun updateTask(task: Task)
 
     @Insert
-    fun addTask(task: Tasks)
+    fun addTask(task: Task)
 
-    @Query("DELETE FROM Tasks WHERE id = (:id)")
+    @Query("DELETE FROM Task WHERE id = (:id)")
     fun deleteTask(id: UUID)
 
-    @Query("DELETE FROM Tasks")
+    @Query("DELETE FROM Task")
     fun deleteAllTasks()
-
-    @Query("SELECT * FROM TASKS ORDER BY priority")
-    fun getPriority(): LiveData<List<Tasks>>
-
-    @Query("SELECT * FROM TASKS WHERE tag = (:tag)")
-    fun getTag(tag: String): LiveData<List<Tasks>>
-
-    @Query("SELECT * FROM TASKS WHERE isDone = 0")
-    fun getUndone() : LiveData<List<Tasks>>
 }

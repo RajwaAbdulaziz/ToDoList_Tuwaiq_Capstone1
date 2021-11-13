@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
-data class Tasks(
+data class Task(
     @PrimaryKey val id: UUID = UUID.randomUUID(),
     var taskTitle: String = "",
     var dueDate: Date? = null,

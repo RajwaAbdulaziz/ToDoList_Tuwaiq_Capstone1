@@ -2,7 +2,6 @@ package com.example.todolist.database
 
 import androidx.room.Room
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import java.lang.IllegalStateException
 import java.util.*
@@ -23,28 +22,19 @@ class TaskRepo private constructor(context: Context) : TaskDao {
 
     private val executor = Executors.newSingleThreadExecutor()
 
-    override fun getAllTasks(): LiveData<List<Tasks>> = taskDao.getAllTasks()
+    override fun getAllTasks(): LiveData<List<Task>> = taskDao.getAllTasks()
 
-    override fun getPriority(): LiveData<List<Tasks>> = taskDao.getPriority()
-
-    override fun getTag(tag: String): LiveData<List<Tasks>> {
-        return taskDao.getTag(tag)
-    }
-
-    override fun getUndone(): LiveData<List<Tasks>> = taskDao.getUndone()
-
-
-    override fun getTask(id: UUID): LiveData<Tasks?> {
+    override fun getTask(id: UUID): LiveData<Task?> {
         return taskDao.getTask(id)
     }
 
-    override fun updateTask(task: Tasks) {
+    override fun updateTask(task: Task) {
         executor.execute {
             taskDao.updateTask(task)
         }
     }
 
-    override fun addTask(task: Tasks) {
+    override fun addTask(task: Task) {
         executor.execute {
             taskDao.addTask(task)
         }

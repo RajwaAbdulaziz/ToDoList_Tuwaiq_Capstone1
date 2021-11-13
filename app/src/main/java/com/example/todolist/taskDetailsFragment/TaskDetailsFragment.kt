@@ -1,25 +1,18 @@
 package com.example.todolist.taskDetailsFragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.todolist.DatePickerDialogFragment
 import com.example.todolist.R
-import com.example.todolist.database.Tasks
+import com.example.todolist.database.Task
 import com.example.todolist.toDoListFragment.*
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,7 +22,7 @@ const val TASK_DUE_DATE = "DUE DATE"
 
 class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment.DatePickerCallback{
 
-        private lateinit var task: Tasks
+        private lateinit var task: Task
         private lateinit var taskTitleEditText: EditText
         private lateinit var taskDescriptionEditText: EditText
         private lateinit var dueDateButton: Button
@@ -42,8 +35,10 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
         private lateinit var homeTag : RadioButton
         private lateinit var shoppingTag : RadioButton
         private lateinit var workTag : RadioButton
-
-        //var dueDate = Date()
+        private lateinit var helperText: Button
+        private lateinit var helperText2: Button
+        private lateinit var helperText3: Button
+        private lateinit var helperText4: Button
 
         private val fragmentTaskDetailsViewModel by lazy {
             ViewModelProvider(this).get(
@@ -70,12 +65,10 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
             homeTag = view.findViewById(R.id.home_tag)
             shoppingTag = view.findViewById(R.id.shopping_tag)
             workTag = view.findViewById(R.id.work_tag)
-
-
-
-//            dueDateButton.apply {
-//                text = task.dueDate.toString()
-//            }
+            helperText = view.findViewById(R.id.text_button)
+            helperText2 = view.findViewById(R.id.text_button2)
+            helperText3 = view.findViewById(R.id.text_button3)
+            helperText4 = view.findViewById(R.id.text_button4)
 
             return view
         }
@@ -95,9 +88,46 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
 
             if (updateIsClicked) {
                 saveTaskDetails.visibility = View.GONE
+                helperText.visibility = View.GONE
+                helperText2.visibility = View.GONE
+                helperText3.visibility = View.GONE
+                helperText4.visibility = View.GONE
             }
 
             updateIsClicked = false
+
+            helperText.setOnClickListener{
+                val a = helperText.text
+                taskTitleEditText.setText(a)
+                helperText.visibility = View.GONE
+                helperText2.visibility = View.GONE
+                helperText3.visibility = View.GONE
+                helperText4.visibility = View.GONE
+            }
+            helperText2.setOnClickListener{
+                val a = helperText2.text
+                taskTitleEditText.setText(a)
+                helperText.visibility = View.GONE
+                helperText2.visibility = View.GONE
+                helperText3.visibility = View.GONE
+                helperText4.visibility = View.GONE
+            }
+            helperText3.setOnClickListener{
+                val a = helperText3.text
+                taskTitleEditText.setText(a)
+                helperText.visibility = View.GONE
+                helperText2.visibility = View.GONE
+                helperText3.visibility = View.GONE
+                helperText4.visibility = View.GONE
+            }
+            helperText4.setOnClickListener{
+                val a = helperText4.text
+                taskTitleEditText.setText(a)
+                helperText.visibility = View.GONE
+                helperText2.visibility = View.GONE
+                helperText3.visibility = View.GONE
+                helperText4.visibility = View.GONE
+            }
 
             saveTaskDetails.setOnClickListener {
                 ADD_TASK = ""
@@ -150,8 +180,7 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
 
             taskDescriptionEditText.addTextChangedListener(descTextWatcher)
 
-
-           taskPriority.setOnCheckedChangeListener { _, i ->
+           taskPriority.setOnCheckedChangeListener { _, _ ->
 
                 when (taskPriority.checkedRadioButtonId) {
                     R.id.high_button -> {
@@ -166,7 +195,7 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
                 }
             }
 
-            taskTag.setOnCheckedChangeListener { _, i ->
+            taskTag.setOnCheckedChangeListener { _, _ ->
                 when(taskTag.checkedRadioButtonId){
                     R.id.home_tag -> {
                         task.tag = "Home"
@@ -181,9 +210,9 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
             }
         }
 
+        @SuppressLint("SimpleDateFormat")
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-
 
             fragmentTaskDetailsViewModel.taskLiveData.observe(
                 viewLifecycleOwner,
@@ -215,6 +244,7 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
             )
         }
 
+        @SuppressLint("SimpleDateFormat")
         override fun onDateSelected(date: Date) {
             task.dueDate = date
             var spf = SimpleDateFormat("E LLL dd hh:mm:ss z yyyy")
@@ -232,15 +262,12 @@ class TaskDetailsFragment: BottomSheetDialogFragment(), DatePickerDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (ADD_TASK == "ADD") {
-//            task = Tasks()
-//        }
 
         if (UPDATE_TASK == "UPDATE") {
             val taskId = arguments?.getSerializable(TASK_ID_KEY) as UUID
             fragmentTaskDetailsViewModel.loadTask(taskId)
         } else {
-            task = Tasks()
+            task = Task()
         }
 
 

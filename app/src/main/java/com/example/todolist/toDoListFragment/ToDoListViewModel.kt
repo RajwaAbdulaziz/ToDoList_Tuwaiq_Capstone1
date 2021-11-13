@@ -1,10 +1,9 @@
 package com.example.todolist.toDoListFragment
 
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.todolist.database.TaskRepo
-import com.example.todolist.database.Tasks
+import com.example.todolist.database.Task
 
 class ToDoListViewModel: ViewModel() {
 
@@ -12,15 +11,7 @@ class ToDoListViewModel: ViewModel() {
 
     val liveDataTasks = taskRepo.getAllTasks()
 
-    val livePriority = taskRepo.getPriority()
-
-    val liveUndone = taskRepo.getUndone()
-
-    fun getTasksTagged(tag:String):LiveData<List<Tasks>>{
-        return taskRepo.getTag(tag)
-    }
-
-    fun addTask(task: Tasks) {
+    fun addTask(task: Task) {
         taskRepo.addTask(task)
     }
 

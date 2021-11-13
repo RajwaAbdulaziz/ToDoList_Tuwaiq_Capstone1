@@ -7,13 +7,82 @@
     android:layout_height="wrap_content"
     android:backgroundTint="#698BE8">
 
+    <Button
+        android:id="@+id/text_button2"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="Buy"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/taskTitleEditText"
+        app:layout_constraintStart_toEndOf="@+id/text_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/text_button4"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Set"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/text_button3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/text_button3"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:text="Work"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/taskTitleEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="176dp"
+        android:ems="10"
+        android:hint="Task"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dueDateButton"
+        android:layout_width="178dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/item_backgroud"
+        android:gravity="center"
+        android:text="Set Date"
+        android:textColor="#A691C5"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
     <RadioGroup
         android:id="@+id/priorityRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dueDateButton">
 
@@ -44,59 +113,33 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/taskTitleEditText"
+        android:id="@+id/taskDescriptionEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="92dp"
         android:layout_marginEnd="176dp"
-        android:ems="10"
-        android:hint="Task"
+        android:ems="15"
+        android:hint="Task Description"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
-        android:text="Due Date"
-        android:textColor="#A691C5"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskTitleEditText" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dueDateButton"
-        android:layout_width="178dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="176dp"
-        android:background="@drawable/item_backgroud"
-        android:gravity="center"
-        android:text="Set Date"
-        android:textColor="#A691C5"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/taskTitleEditText"
+        app:layout_constraintVertical_bias="0.678" />
 
     <RadioGroup
         android:id="@+id/tagsRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priorityRadioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/priorityRadioGroup"
+        app:layout_constraintVertical_bias="0.793">
 
         <RadioButton
             android:id="@+id/home_tag"
@@ -120,19 +163,15 @@
 
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/taskDescriptionEditText"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="176dp"
-        android:ems="15"
-        android:hint="Task Description"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="76dp"
+        android:text="Due Date"
+        android:textColor="#A691C5"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskTitleEditText" />
 
@@ -157,10 +196,23 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tagsRadioGroup"
         tools:layout_editor_absoluteX="72dp" />
+
+    <Button
+        android:id="@+id/text_button"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="56dp"
+        android:text="Call"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

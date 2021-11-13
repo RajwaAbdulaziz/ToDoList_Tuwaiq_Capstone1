@@ -1,7 +1,16 @@
 package com.example.todolist
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.example.todolist.toDoListFragment.CHANNEL_ID
+import com.example.todolist.toDoListFragment.CHANNEL_NAME
 import com.example.todolist.toDoListFragment.ToDoListFragment
 
 class MainActivity : AppCompatActivity() {

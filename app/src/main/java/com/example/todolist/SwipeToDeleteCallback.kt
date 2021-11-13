@@ -1,14 +1,10 @@
 package com.example.todolist
 
-import android.app.Activity
-import android.content.Context
+
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -16,7 +12,6 @@ abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
 
     private lateinit var colorDrawableBackground: ColorDrawable
     private lateinit var colorDrawableBackground2: ColorDrawable
-    private lateinit var deleteIcon: Drawable
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
@@ -46,10 +41,7 @@ abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
         colorDrawableBackground = ColorDrawable(Color.parseColor("#FFF46E64"))
         colorDrawableBackground2 = ColorDrawable(Color.parseColor("#FF80C4CD"))
 
-        //deleteIcon = getDrawable(R.drawable.ic_baseline_delete_24)!!
-
         val itemView = viewHolder.itemView
-        //val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2
 
         if (dX > 0) {
             colorDrawableBackground.setBounds(
@@ -66,13 +58,6 @@ abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
             colorDrawableBackground2.draw(c)
 
             c.save()
-
-//        if (dX > 0)
-//            c.clipRect(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
-//        else
-//            c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-
-            //c.restore()
 
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
